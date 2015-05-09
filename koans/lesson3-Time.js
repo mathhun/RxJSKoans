@@ -9,7 +9,7 @@ module('Lesson 3 - Time');
 
 asyncTest('LaunchingAnActionInTheFuture', function() {
     var received = '';
-    var delay = _______;
+    var delay = 0;
     Rx
         .Scheduler
         .immediate
@@ -20,7 +20,7 @@ asyncTest('LaunchingAnActionInTheFuture', function() {
 
 asyncTest('LaunchingAnEventInTheFuture', function() {
     var received = '',
-        time = _______;
+        time = 0;
         
     Rx
         .Observable
@@ -34,7 +34,7 @@ asyncTest('LaunchingAnEventInTheFuture', function() {
 asyncTest('AWatchedPot', function() {
     var received = '',
         delay = 500,
-        timeout = _______,
+        timeout = 501,
         timeoutEvent =
             Rx  .Observable
                 .returnValue('Tepid');

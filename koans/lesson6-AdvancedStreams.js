@@ -15,15 +15,15 @@ test('Merging', function() {
 
     riffles([1, 2, 3].toEnumerable(), ['A', 'B', 'C'].toEnumerable())
         .forEach(function(riffle) {
-            console.log("riffle: ", riffle.toArray());
+            //console.log("riffle: ", riffle.toArray());
         });
     
     console.log("easy: ", easy);
 
     equals(
         riffles([1, 2, 3].toEnumerable(), ['A', 'B', 'C'].toEnumerable())
-        .select(function (riffle) {return riffle.toArray();})
-        ._______(easy, arrayComparer),
+        .(function (riffle) {return riffle.toArray();})
+        .includes(easy, arrayComparer),
         true);
 });
 
@@ -82,7 +82,7 @@ var floatingEquals = function (a, b, digits) {
 
 test('DescriptiveStatistics', function () {
     var e = [1, 2, 3].toEnumerable();
-    equals(e.standardDeviation(), _______);
+    equals(e.standardDeviation(), 1);
 
     equals(floatingEquals(
         [1, 2].toEnumerable().standardDeviation(),
@@ -114,7 +114,7 @@ test('Splitting Up', function() {
     var oddsAndEvens = ['',''];
         numbers = Rx.Observable.range(1, 9),
         split = numbers
-            .groupBy(function(n) { return n % _______; });
+            .groupBy(function(n) { return n % 2; });
 
     split.subscribe(function (g) {
         return g.subscribe(
@@ -146,7 +146,7 @@ test('Subscribe Imediately When Splitting', function() {
         .subscribe(function(g) {
             g
                 .average()
-                ._______(function(a) { averages[g.key] = a; });
+                .subscribe(function(a) { averages[g.key] = a; });
     });
     equals(22, averages[0]);
     equals(100, averages[1]);
@@ -181,7 +181,7 @@ test('Multiple Subscriptions', function() {
     numbers.onCompleted();
 
     equals(sum, 15);
-    equals(average, _______);
+    equals(average, 2);
 });
 
 test('Tally', function()
